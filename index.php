@@ -96,9 +96,9 @@ if( !file_exists('config.php') ) { header('Location:install.php'); exit(0); }
 			</div>
 		
 			<div class="field">
-				<p class="encart encart-0">Pour valider la saisie, merci de scanner le code de validation</p>				
-				<p class="encart encart-1">Pour valider la saisie, cliquez sur le bouton "Valider"</p>				
-				<p class="encart encart-2">Pour valider la saisie, scannez le code de validation ou cliquez sur le bouton "Valider"</p>				
+				<p class="encart encart-0" style="display:none">Pour valider la saisie, merci de scanner le code de validation</p>				
+				<p class="encart encart-1" style="display:none">Pour valider la saisie, cliquez sur le bouton "Valider"</p>				
+				<p class="encart encart-2" style="display:none">Pour valider la saisie, scannez le code de validation ou cliquez sur le bouton "Valider"</p>				
 			</div>
 			
 		</form>
