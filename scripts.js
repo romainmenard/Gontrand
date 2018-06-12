@@ -114,8 +114,8 @@ $('.add').submit(function() {
 		
 		$.post('ajax.php', {val:val, code:code, code_interne:code_interne, nom:nom, action:'add'}, function(data) {
 						
-			$('input[type=text]').val('');
-			$('input[type=password]').val('');
+			$('#'+form_id+' input[type=text]').val('');
+			$('#'+form_id+' input[type=password]').val('');
 			
 			load(val);
 			
