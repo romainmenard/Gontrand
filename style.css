@@ -1,0 +1,68 @@
+/*
+Copyright (C) 2018 Ménard Romain
+
+This file is part of Gontrand.
+
+Gontrand is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Gontrand is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Gontrand.  If not, see <http://www.gnu.org/licenses/>
+*/
+
+body { min-width:1500px; background:#333; font-family:Ubuntu Mono; color:#ddd; opacity:1; transition:opacity 0.25s ease; margin:0; padding:0; }
+body.loading { opacity:0.5; }
+
+* { box-sizing:border-box; }
+
+h1 { font-size:2.5em; text-align:center; border:5px solid #ddd; margin:0 0 20px 0; }
+h2 { font-size:2em; text-align:left; margin:0 0 20px 0; text-decoration:underline }
+h3 { font-size:1.5em; margin-bottom:10px }
+
+.red { color:red }
+.green { color:#16d816 }
+
+a { color:#ddd }
+a.button { width:auto; border:1px solid rgba(255,255,255,0.3); padding:5px; font-family:Ubuntu Mono; font-size:0.9em; background:rgba(255,255,255,0.2); color:#ddd; display:inline-block; text-decoration:none }
+a.button:hover { cursor:pointer; background:rgba(255,255,255,0.3); }
+
+table tr:nth-child(2n) { background:rgba(255,255,255,0.1) }
+table td { padding:5px 20px; border:1px solid #555 }
+table { width:auto; border-collapse:collapse }
+table thead { font-weight:bold; }
+table tr td.ar { text-align:right }
+table input[type=submit] { margin-top:0 }
+table a { border:1px solid rgba(255,255,255,0.3); padding:5px; font-family:Ubuntu Mono; font-size:0.9em; background:rgba(255,255,255,0.2); color:#ddd; display:block; text-decoration:none }
+table a:hover { cursor:pointer; background:rgba(255,255,255,0.3); }
+
+input { border:1px solid rgba(255,255,255,0.3); padding:5px; font-family:Ubuntu Mono; font-size:0.9em; background:rgba(255,255,255,0.2); color:#ddd }
+input[type=submit] { margin-top:20px }
+input[type=submit]:hover { cursor:pointer; background:rgba(255,255,255,0.3); }
+select { border:1px solid rgba(255,255,255,0.3); padding:5px; font-family:Ubuntu Mono; font-size:0.9em; background:rgba(255,255,255,0.2); color:#ddd }
+label { height:20px; float:left }
+
+
+form { width:100%;  float:left; margin-bottom:50px }
+form .field { float:left; margin-right:20px }
+form .field p { margin:0 }
+form .field p.encart { margin-top:20px;  border:1px solid rgba(255,255,255,0.3); padding:5px; font-weight:bold; font-size:0.9em; }
+
+#main-nav { width:350px; height:100vh; float:left; border-right:1px solid #555; padding:50px 20px; }
+#main-nav ul { font-size:1.3em; list-style:none; margin:0; padding:0 }
+#main-nav ul li { line-height:1.5em }
+#main-nav ul li a { text-decoration:none }
+#main-nav ul li a:hover { text-decoration:underline }
+.tab { padding:50px; width:calc(100% - 360px); float:right }
+
+.static #table-entrees-sorties tr td:last-child { display:none }
+.static #table-materiel tr td:nth-child(4), .static #table-materiel tr td:nth-child(5) { display:none }
+
+.install-form h3 { width:100%; float:left }
+.install-form p { width:100%; float:left; margin-top:0 }
