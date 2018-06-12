@@ -15,7 +15,8 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with Gontrand.  If not, see <http://www.gnu.org/licenses/>
-*/ ?>
+*/
+if( $_SESSION['logged'] == true ) { ?>
 
 <table id="table-<?php echo $val; ?>">
 
@@ -54,3 +55,5 @@ along with Gontrand.  If not, see <http://www.gnu.org/licenses/>
 	</tbody>
 	
 </table>
+
+<?php } ?>

@@ -15,9 +15,7 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with Gontrand.  If not, see <http://www.gnu.org/licenses/>
-*/ ?>
-
-<?php 
+*/
 session_start();
 if( isset( $_SESSION['logged'] ) ) {
 $is_admin = ( $_SESSION['logged'] == true ) ? 1 : 0;
