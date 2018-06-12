@@ -20,7 +20,7 @@ session_start();
 if( isset( $_SESSION['logged'] ) ) {
 $is_admin = ( $_SESSION['logged'] == true ) ? 1 : 0;
 } else { $is_admin = 0; }
-if( isset( $_GET['install_done'] ) ) { unlink('install.php'); }
+if( isset( $_GET['install_done'] ) ) { unlink('install.php'); header('Location:index.php'); exit(0); }
 if( !file_exists('config.php') ) { header('Location:install.php'); exit(0); }
 ?>
 
