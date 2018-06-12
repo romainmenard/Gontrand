@@ -91,12 +91,14 @@ if( !file_exists('config.php') ) { header('Location:install.php'); exit(0); }
 				</p>			
 			</div>
 		
-			<div class="field" style="position:absolute; left:-900px">
+			<div class="field">
 				<p><input type="submit" value="Valider"/></p>				
 			</div>
 		
 			<div class="field">
-				<p class="encart">Pour valider la saisie, merci de scanner le code de validation</p>				
+				<p class="encart encart-0">Pour valider la saisie, merci de scanner le code de validation</p>				
+				<p class="encart encart-1">Pour valider la saisie, cliquez sur le bouton "Valider"</p>				
+				<p class="encart encart-2">Pour valider la saisie, scannez le code de validation ou cliquez sur le bouton "Valider"</p>				
 			</div>
 			
 		</form>
@@ -245,6 +247,17 @@ if( !file_exists('config.php') ) { header('Location:install.php'); exit(0); }
 						<label for="code-validation">Saisir le code</label><br/>
 						<input type="text" name="code_validation" id="code-validation" value=""/>
 					</p>				
+				</div>
+	
+				<div class="field">				
+					<p>
+						<label for="type-validation">Type de validation</label><br/>
+						<select name="type_validation" id="type-validation">
+							<option value="0">Uniquement par le lecteur de codes barres</option>
+							<option value="1">Uniquement par le bouton "Valider" du formulaire</option>
+							<option value="2">Par le lecteur de code barre OU par le bouton "Valider"</option>
+						</select>
+					</p>
 				</div>
 				
 				<div class="field">				

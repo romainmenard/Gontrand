@@ -98,9 +98,10 @@ $is_admin = ( $_SESSION['logged'] == true ) ? 1 : 0;
 				)");
 				$bdd->exec("CREATE TABLE `".$bdd_pref."settings` (
 				`password` varchar(255) NOT NULL,
-				`code_validation` varchar(255) NOT NULL
+				`code_validation` varchar(255) NOT NULL,
+				`type_validation` varchar(255) NOT NULL
 				)");
-				$bdd->exec("INSERT INTO `".$bdd_pref."settings` (`password`, `code_validation`) VALUES ('".$mdp."', '".$code."')");
+				$bdd->exec("INSERT INTO `".$bdd_pref."settings` (`password`, `code_validation`, `type_validation`) VALUES ('".$mdp."', '".$code."', 0)");
 				
 				$data = '<?php $pre=\''.$bdd_pref.'\'; try { $bdd = new PDO(\'mysql:host='.$bdd_host.';dbname='.$bdd_name.';charset=utf8\', \''.$bdd_user.'\', \''.$bdd_pass.'\'); } catch (Exception $e) {  die(\'Erreur : \' . $e->getMessage()); } ?>';
 				touch('config.php');

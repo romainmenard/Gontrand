@@ -40,6 +40,7 @@ $(document).ready(function() {
 	load('statut-materiel');
 	$('#scan-form input[name=code_materiel]').focus();
 	load_code_validation();
+	load_type_validation();
 	
 });
 
@@ -68,13 +69,15 @@ $('.add').submit(function() {
 	} else if( form_id == 'validation-form' ) {
 
 		var code_validation = $('#'+form_id+' input[name=code_validation]').val();
-		$.post('ajax.php', {code_validation:code_validation, action:'change_code_validation'}, function(data) {
+		var type_validation = $('#'+form_id+' select[name=type_validation]').val();
+		$.post('ajax.php', {code_validation:code_validation, type_validation:type_validation, action:'options_validation'}, function(data) {
 			
 			if( data == '' ) {
 				
-				alert('Code de validation modifié !');
+				alert('Options de validation modifiées !');
 				sessionStorage.setItem('code_validation',code_validation);
 				if( $('#isadmin').length > 0 ) { $('#scan-form input[name=code_validation]').val( code_validation ); }
+				window.location.href = '';
 				
 			} else {
 				
@@ -125,12 +128,23 @@ $('.add').submit(function() {
 
 $('#scan-form').submit(function() {
 	
+	var type_validation = sessionStorage.getItem('type_validation');
 	var code_materiel = $('#scan-form input[name=code_materiel]').val();
 	var code_personne = $('#scan-form input[name=code_personne]').val();
-	var code_validation = $('#scan-form input[name=code_validation]').val();
+	var code_validation= '';
+	var error = '';
 	
-	if( code_validation == sessionStorage.getItem('code_validation') ) {
+	if( type_validation == 0 || type_validation == 2 ) {
 		
+		var code_validation = $('#scan-form input[name=code_validation]').val();
+	
+		if( type_validation == 0 && code_validation != sessionStorage.getItem('code_validation') ) { error = 'Mauvais code de validation'; }
+		if( type_validation == 2 && code_validation != '' && code_validation != sessionStorage.getItem('code_validation') ) { error = 'Mauvais code de validation'; }
+	
+	}
+	
+	if( error == '' ) {
+
 		$.post('ajax.php', {code_materiel:code_materiel, code_personne:code_personne, action:'add_entree_sortie'}, function(data) {
 			
 			if( data == '' ) {
@@ -138,8 +152,6 @@ $('#scan-form').submit(function() {
 				$('#scan-form input[type=text]').val('');
 				load('entrees-sorties');
 				load('statut-materiel');
-				
-				if( $('#isadmin').length > 0 ) { $('#scan-form input[name=code_validation]').val( sessionStorage.getItem('code_validation') ); }
 								
 			} else {
 				
@@ -151,7 +163,7 @@ $('#scan-form').submit(function() {
 		
 	} else {
 		
-		alert('Mauvais code de validation');
+		alert(error);
 		
 	}
 		
@@ -198,6 +210,7 @@ function edit(val, id) {
 $('#scan-form input').keydown(function (e) {
 	
 	var name = $(this).attr('name');
+	var type_validation = sessionStorage.getItem('type_validation');
 
 	if(e.keyCode == 13) {
 	    
@@ -206,32 +219,12 @@ $('#scan-form input').keydown(function (e) {
 			return false;
 	    }
 	    else if( name == 'code_personne' ) {
-		    $('input[name=code_validation]').focus();
-			return false;
-	    }
-	    else if( name == 'code_validation' ) {
-			
-			$('#scan-form').submit();
-			return false;
-		
-	    }
-	
-	}
-    
-});
-
-$('.add input').keydown(function (e) {
-	
-	var name = $(this).attr('name');
-	
-	if(e.keyCode == 13) {
-	    
-	    if( name == 'code_materiel' ) {
-		    $('input[name=code_personne]').focus();
-			return false;
-	    }
-	    else if( name == 'code_personne' ) {
-		    $('input[name=code_validation]').focus();
+		    
+			if( type_validation == 0 || type_validation == 2 ) {
+				$('#scan-form input[name=code_validation]').focus();
+			} else {
+				$('#scan-form input[type=submit]').focus();
+			}
 			return false;
 	    }
 	    else if( name == 'code_validation' ) {
@@ -296,7 +289,28 @@ function load_code_validation() {
 		
 		sessionStorage.setItem('code_validation',data);
 		$('#validation-form input[name=code_validation]').val(data);
-		if( $('#isadmin').length > 0 ) { $('#scan-form input[name=code_validation]').val( data ); }
+		
+	});
+	
+}
+
+function load_type_validation() {
+	
+	$.post('ajax.php', { action:'load_type_validation' }, function(data) {
+		
+		sessionStorage.setItem('type_validation',data);
+		$('#validation-form select[name=type_validation]').val(data);
+		
+		if( data == 0 ) {
+			$('#scan-form input[type=submit]').hide();
+		}
+		if( data == 1 ) {
+			$('#scan-form input[name=code_validation]').remove();			
+		}
+		
+		$('#scan-form .encart').hide();
+		$('#scan-form .encart-'+data).show();
+		
 		
 	});
 	

@@ -213,16 +213,13 @@ switch($action) {
 	
 	break;
 	
-	case 'change_code_validation' :
+	case 'options_validation' :
 	
 		$code_validation = $_POST['code_validation'];
-		if( $code_validation != '' ) {
-			
-			$suf = 'settings';
-			$bdd->query("UPDATE $pre$suf SET code_validation='$code_validation'");
-			
-		}
-	
+		$type_validation = $_POST['type_validation'];
+		$suf = 'settings';
+		$bdd->query("UPDATE $pre$suf SET code_validation='$code_validation', type_validation='$type_validation'");
+		
 	break;
 	
 	case 'load_code_validation' :
@@ -236,6 +233,20 @@ switch($action) {
 		}
 		
 		echo $code_validation;
+	
+	break;
+	
+	case 'load_type_validation' :
+	
+		$suf = 'settings';
+		$req = $bdd->query("SELECT * FROM $pre$suf");
+		while($data = $req->fetch()){
+			
+			$type_validation = $data['type_validation'];
+			
+		}
+		
+		echo $type_validation;
 	
 	break;
 	
